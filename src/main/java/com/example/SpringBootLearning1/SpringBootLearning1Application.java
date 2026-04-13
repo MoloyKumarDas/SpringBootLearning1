@@ -12,13 +12,13 @@ public class SpringBootLearning1Application implements CommandLineRunner {
 		SpringApplication.run(SpringBootLearning1Application.class, args);
 	}
 
-	//@Autowired        // field injection
-	private final RazorpayPaymentService paymentService;     // don't need to use new to create object // after creating bean(@component) autometic object created
 
-	       // Dependency injection
-	public SpringBootLearning1Application(RazorpayPaymentService paymentService) {      //  add this autometic // alt+insert ->constructor->select paymentService
-		this.paymentService = paymentService;
-	}
+	private final PaymentService paymentService;
+
+
+	public SpringBootLearning1Application(PaymentService paymentService) {              // currently there are 2 bean // razor & stripe // but i have to choose 1
+		this.paymentService = paymentService;                                           // i did comment out one bean ( @component) // comment out from RazorPayment.. // now one bean present->stripe
+	}                                                                                   // loosely coupled // don't need to tell separately that when we use which bean
 
 	@Override
 	public void run(String... args)throws Exception{
