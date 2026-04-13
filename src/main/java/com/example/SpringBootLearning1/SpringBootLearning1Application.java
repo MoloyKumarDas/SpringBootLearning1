@@ -17,8 +17,8 @@ public class SpringBootLearning1Application implements CommandLineRunner {
 
 
 	public SpringBootLearning1Application(PaymentService paymentService) {              // currently there are 2 bean // razor & stripe // but i have to choose 1
-		this.paymentService = paymentService;                                           // i did comment out one bean ( @component) // comment out from RazorPayment.. // now one bean present->stripe
-	}                                                                                   // loosely coupled // don't need to tell separately that when we use which bean
+		this.paymentService = paymentService;                                           // i have used application.properties & condition to select one bean
+	}
 
 	@Override
 	public void run(String... args)throws Exception{
