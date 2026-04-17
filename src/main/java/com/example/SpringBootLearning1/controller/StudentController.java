@@ -1,25 +1,23 @@
 package com.example.SpringBootLearning1.controller;
 
 import com.example.SpringBootLearning1.dto.StudentDto;
-import com.example.SpringBootLearning1.entity.Student;
-import com.example.SpringBootLearning1.repository.StudentRepository;
+import com.example.SpringBootLearning1.service.StudentService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 public class StudentController {
 
-    private final StudentRepository studentRepository;
+    private final StudentService studentService;
 
-    public StudentController(StudentRepository studentRepository){
-        this.studentRepository=studentRepository;
-    }
 
     @GetMapping("/student")
-    public List<Student> getStudent() {
-        return studentRepository.findAll();
+    public List<StudentDto> getStudent() {
+        return studentService.getAllStudents();
     }
 
     @GetMapping("/student/{id}")
