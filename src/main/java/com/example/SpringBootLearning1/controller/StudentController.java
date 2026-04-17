@@ -21,10 +21,10 @@ public class StudentController {
         return studentService.getAllStudents();
     }
 
-    @GetMapping("/students/{id}")
-    public String getStudentById(@PathVariable Long id) {
+    @GetMapping("/students/{id}/{name}")
+    public String getStudentById(@PathVariable Long id,@PathVariable String name) {
 
-        return "path variable"+id;
+        return "path variable"+id+"name is "+name;
     }
 
 
