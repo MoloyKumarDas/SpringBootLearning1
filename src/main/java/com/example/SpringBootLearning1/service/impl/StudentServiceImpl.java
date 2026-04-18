@@ -1,5 +1,6 @@
 package com.example.SpringBootLearning1.service.impl;
 
+import com.example.SpringBootLearning1.dto.AddStudentRequestDto;
 import com.example.SpringBootLearning1.dto.StudentDto;
 import com.example.SpringBootLearning1.entity.Student;
 import com.example.SpringBootLearning1.repository.StudentRepository;
@@ -34,5 +35,12 @@ public class StudentServiceImpl implements StudentService {
         Student student = studentRepository.findById(id).orElseThrow(()->new IllegalArgumentException("Student not found with Id: "+id));
         return modelMapper.map(student,StudentDto.class);
 
+    }
+
+    @Override
+    public StudentDto createNewStudent(AddStudentRequestDto addStudentRequestDto) {
+        Student newStudent=modelMapper.map(addStudentRequestDto,Student.class);
+        Student student=studentRepository.save(newStudent);
+        return modelMapper.map(student,StudentDto.class);
     }
 }
