@@ -21,7 +21,7 @@ public class StudentController {
     @GetMapping
     public ResponseEntity<List<StudentDto>> getAllStudents() {
         //return ResponseEntity.status(HttpStatus.OK).body((studentService.getAllStudents()));
-    return ResponseEntity.ok(studentService.getAllStudents());
+        return ResponseEntity.ok(studentService.getAllStudents());
     }
 
     @GetMapping("/{id}")
@@ -31,9 +31,16 @@ public class StudentController {
 
     }
 
+
 @PostMapping
    public ResponseEntity<StudentDto>createNewStudent(@RequestBody AddStudentRequestDto addStudentRequestDto){
        return ResponseEntity.status(HttpStatus.CREATED).body(studentService.createNewStudent(addStudentRequestDto));
+}
+
+@DeleteMapping("/{id}")
+    public ResponseEntity<Void>deleteAStudent(@PathVariable Long id){
+        studentService.deleteStudentById(id);
+        return ResponseEntity.noContent().build();
 }
 
 }
